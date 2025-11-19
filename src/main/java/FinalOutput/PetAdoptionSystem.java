@@ -175,7 +175,7 @@ public class PetAdoptionSystem {
                     
                     Choice:""");
         byte choice = input.nextByte();
-        String search = null;
+        String search;
         boolean isMatchFound = false;
         switch (choice){
             case 1:
