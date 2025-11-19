@@ -26,13 +26,25 @@ public class PetAdoptionSystem {
     public void menu(){
         Scanner input = new Scanner(System.in);
         boolean validInput = true;
+        System.out.println("""
+██████  ███████ ████████     ██████   █████  ██████  ████████ 
+██   ██ ██         ██        ██   ██ ██   ██ ██   ██    ██    
+██████  █████      ██        ██   ██ ███████ ██████     ██    
+██      ██         ██        ██   ██ ██   ██ ██         ██    
+██      ███████    ██        ██████  ██   ██ ██         ██    
+                                                              
+                PET ADOPTION SYSTEM
+""");
+
         do{
-            System.out.println("""
+            System.out.print("""
                     1. View Pets
                     2. Adopt Pet
                     3. Add pet
                     4. Remove Pet
-                    5. Exit""");
+                    5. Exit
+                    
+                    Choice: """);
 
             byte userInput = input.nextByte();
 
@@ -67,6 +79,7 @@ public class PetAdoptionSystem {
         for(Pet pet: pets){
             System.out.println(pet.toString());
         }
+        System.out.println();
     }
 
     private void adoptPet(){
@@ -91,7 +104,7 @@ public class PetAdoptionSystem {
             return;
         }
         input.nextLine();
-        System.out.println("Enter your name: ");
+        System.out.print("Enter your name: ");
         String adopterName = input.nextLine();
         selectedPet.adopt();
         System.out.println("Congratulations " + adopterName + "! You adopted " + selectedPet.getName() + "!");
@@ -99,39 +112,46 @@ public class PetAdoptionSystem {
 
     private void addPet(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the name of your pet: ");
+        System.out.print("Enter the name of your pet: ");
         String petName = input.nextLine();
-        System.out.println("Type (Ex. Dog, Cat, Bird, etc.): ");
+        String formattedPetName = petName.substring(0,1).toUpperCase() + petName.substring(1);
+        System.out.print("Type (Ex. Dog, Cat, Bird, etc.): ");
         String petType = input.nextLine();
-        System.out.println("Age: ");
+        String formattedPetType = petType.substring(0,1).toUpperCase() + petType.substring(1);
+
+        System.out.print("Age: ");
         byte petAge = input.nextByte();
 
-        pets.add(new Pet(petName, petType, petAge));
+        pets.add(new Pet(formattedPetName, formattedPetType, petAge));
 
     }
 
     private void removePet() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter Pet ID to remove: ");
+        System.out.print("Enter Pet ID to remove [press 5 to return]: ");
         int petId = input.nextInt();
 
         Pet getPet = null;
 
+        if(petId == 5){
+            menu();
+        }else {
+            for (Pet p : pets) {
+                if (p.getId() == petId) {
+                    getPet = p;
+                    break;
+                }
+            }
 
-        for (Pet p : pets) {
-            if (p.getId() == petId) {
-                getPet = p;
-                break;
+            if (getPet != null) {
+                System.out.println("You successfully removed " + getPet.getName() + "!");
+                pets.remove(getPet);
+            } else {
+                System.out.println("Pet ID not found!");
             }
         }
 
-        if (getPet != null) {
-            System.out.println("You successfully removed " + getPet.getName() + "!");
-            pets.remove(getPet);
-        } else {
-            System.out.println("Pet ID not found!");
-        }
     }
 
 
