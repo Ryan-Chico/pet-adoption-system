@@ -10,18 +10,19 @@ public class PetAdoptionSystem {
 
     ArrayList<Pet> pets = new ArrayList<>();
 
-    public void seedPets(){
-        pets.add(new Pet("Browny", "Cat", 10));
-        pets.add(new Pet( "Max", "Dog", 3));
-        pets.add(new Pet("Mittens", "Cat", 1));
-        pets.add(new Pet("Buddy", "Dog", 2));
-        pets.add(new Pet("Chirpy", "Bird", 1));
-        pets.add(new Pet("Snow", "Rabbit", 4));
-        pets.add(new Pet("Goldie", "Fish", 1));
-        pets.add(new Pet("Shadow", "Dog", 5));
-        pets.add(new Pet("Luna", "Cat", 2));
-        pets.add(new Pet("Rocky", "Dog", 6));
+    public void seedPets() {
+        pets.add(new Pet("Browny", "Cat", "Persian", 10));
+        pets.add(new Pet("Max", "Dog", "Labrador", 3));
+        pets.add(new Pet("Mittens", "Cat", "Siamese", 1));
+        pets.add(new Pet("Buddy", "Dog", "Beagle", 2));
+        pets.add(new Pet("Chirpy", "Bird", "Parakeet", 1));
+        pets.add(new Pet("Snow", "Rabbit", "Angora", 4));
+        pets.add(new Pet("Goldie", "Fish", "Goldfish", 1));
+        pets.add(new Pet("Shadow", "Dog", "German Shepherd", 5));
+        pets.add(new Pet("Luna", "Cat", "Maine Coon", 2));
+        pets.add(new Pet("Rocky", "Dog", "Bulldog", 6));
     }
+
 
     public void menu(){
         Scanner input = new Scanner(System.in);
@@ -44,7 +45,7 @@ public class PetAdoptionSystem {
                     4. Remove Pet
                     5. Exit
                     
-                    Choice: """);
+                    Choice:""");
 
             byte userInput = input.nextByte();
 
@@ -118,11 +119,14 @@ public class PetAdoptionSystem {
         System.out.print("Type (Ex. Dog, Cat, Bird, etc.): ");
         String petType = input.nextLine();
         String formattedPetType = petType.substring(0,1).toUpperCase() + petType.substring(1);
+        System.out.print("Breed: ");
+        String petBreed = input.nextLine();
+        String formattedPetBreed = petBreed.substring(0,1).toUpperCase() + petBreed.substring(1);
 
         System.out.print("Age: ");
         byte petAge = input.nextByte();
 
-        pets.add(new Pet(formattedPetName, formattedPetType, petAge));
+        pets.add(new Pet(formattedPetName, formattedPetType, formattedPetBreed, petAge));
 
     }
 
@@ -152,6 +156,19 @@ public class PetAdoptionSystem {
             }
         }
 
+    }
+    private void searchPet(){
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Search pets by: ");
+        System.out.println("""
+                    1. Type
+                    2. Name
+                    3. Age
+                    4. Remove Pet
+                    5. Exit
+                    
+                    Choice:""");
     }
 
 

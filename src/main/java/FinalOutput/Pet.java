@@ -13,13 +13,15 @@ public class Pet {
     private int id;
     private String name;
     private String type;
+    private String breed;
     private int age;
     private boolean adopted;
     private static int idCounter;
-    public Pet(String name,String type, int age){
+    public Pet(String name,String type, String breed, int age){
         this.id = idCounter++;
         this.name = name;
         this.type = type;
+        this.breed = breed;
         this.age = age;
         this.adopted = false;
     }
@@ -29,7 +31,7 @@ public class Pet {
     }
     @Override
     public String toString(){
-        return id + " - " + name + " (" + type + ", Age: " + age + ")"
+        return id + " - " + name + " (" + type + "Breed" + breed +", Age: " + age + ")"
                 + (adopted ? " [ADOPTED]" : "");
     }
 }
