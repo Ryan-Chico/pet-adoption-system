@@ -1,6 +1,6 @@
 package FinalOutput;
 
-import lombok.ToString;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,11 +27,12 @@ public class PetAdoptionSystem {
         Scanner input = new Scanner(System.in);
         boolean validInput = true;
         do{
-            System.out.println("1. View Pets\n" +
-                    "2. Adopt Pet\n" +
-                    "3. Add pet\n" +
-                    "4. Remove Pet\n" +
-                    "5. Exit");
+            System.out.println("""
+                    1. View Pets
+                    2. Adopt Pet
+                    3. Add pet
+                    4. Remove Pet
+                    5. Exit""");
 
             byte userInput = input.nextByte();
 

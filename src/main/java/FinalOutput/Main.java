@@ -5,7 +5,5 @@ public class Main {
         PetAdoptionSystem petAdoptionSystem = new PetAdoptionSystem();
         petAdoptionSystem.seedPets();
         petAdoptionSystem.menu();
-
-
     }
 }
