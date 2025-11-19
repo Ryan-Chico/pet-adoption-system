@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class PetAdoptionSystem {
 
     ArrayList<Pet> pets = new ArrayList<>();
-    Adopter adopter = new Adopter();
+
     public void seedPets(){
         pets.add(new Pet("Browny", "Cat", 10));
         pets.add(new Pet( "Max", "Dog", 3));
@@ -45,10 +45,10 @@ public class PetAdoptionSystem {
                 case 3: addPet();
                     break;
 
-                case 4: ;
+                case 4:
                     removePet();
                     break;
-                case 5: ;
+                case 5:
                     validInput = false;
                     break;
                 default:
