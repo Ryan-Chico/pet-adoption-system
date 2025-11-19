@@ -26,7 +26,7 @@ public class PetAdoptionSystem {
 
     public void menu(){
         Scanner input = new Scanner(System.in);
-        boolean validInput = true;
+        boolean isValidInput = true;
         System.out.println("""
 ██████  ███████ ████████     ██████   █████  ██████  ████████ 
 ██   ██ ██         ██        ██   ██ ██   ██ ██   ██    ██    
@@ -43,7 +43,8 @@ public class PetAdoptionSystem {
                     2. Adopt Pet
                     3. Add pet
                     4. Remove Pet
-                    5. Exit
+                    5. Search Pet
+                    6. Exit
                     
                     Choice:""");
 
@@ -63,7 +64,11 @@ public class PetAdoptionSystem {
                     removePet();
                     break;
                 case 5:
-                    validInput = false;
+                    searchPet();
+                    break;
+
+                case 6:
+                    isValidInput = false;
                     break;
                 default:
                     System.out.println("Please enter a valid choice.");
@@ -71,7 +76,7 @@ public class PetAdoptionSystem {
             }
 
 
-        }while (validInput);
+        }while (isValidInput);
 
     }
 
@@ -160,15 +165,99 @@ public class PetAdoptionSystem {
     private void searchPet(){
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Search pets by: ");
+        System.out.println("Search pets by: ");
         System.out.println("""
                     1. Type
                     2. Name
-                    3. Age
-                    4. Remove Pet
-                    5. Exit
+                    3. Breed
+                    4. Age
+                    5. Return
                     
                     Choice:""");
+        byte choice = input.nextByte();
+        String search = null;
+        boolean isMatchFound = false;
+        switch (choice){
+            case 1:
+                System.out.println("Search Type: ");
+                input.nextLine();
+                search = input.nextLine();
+
+
+                System.out.println("List of Pet/s by Type");
+                for(Pet pet : pets){
+                    if(pet.getType().equalsIgnoreCase(search)){
+                        System.out.println(pet);
+                        isMatchFound = true;
+                    }
+
+                }
+                if(!isMatchFound){
+                    System.out.println("No match found for your type "+search);
+                }
+                System.out.println();
+                break;
+
+            case 2:
+                System.out.println("Search Name: ");
+                input.nextLine();
+                search = input.nextLine();
+
+
+                System.out.println("List of Pet/s by Name: ");
+                for(Pet pet : pets){
+                    if(pet.getName().equalsIgnoreCase(search)){
+                        System.out.println(pet);
+                        isMatchFound = true;
+                    }
+                }
+                System.out.println();
+                if(!isMatchFound){
+                    System.out.println("No match found for your name "+search);
+                }
+                break;
+
+            case 3:
+                System.out.println("Search Breed: ");
+                input.nextLine();
+                String searchPetBreed = input.nextLine();
+                System.out.println("List of Pet/s by Breed: ");
+                for(Pet pet: pets){
+                    if(pet.getBreed().equalsIgnoreCase(searchPetBreed)){
+                        System.out.println(pet);
+                        isMatchFound = true;
+                    }
+                }
+                System.out.println();
+                if(!isMatchFound){
+                    System.out.println("No match found for your name "+searchPetBreed);
+                }
+                break;
+
+            case 4:
+                System.out.println("Search Age: ");
+                System.out.println("(Note: All pets younger than or equal this age will be shown)");
+                input.nextLine();
+                byte searchPetAge = input.nextByte();
+                System.out.println("List of Pet/s by Age: ");
+                for(Pet pet: pets){
+                    if(pet.getAge() <= searchPetAge){
+                        System.out.println(pet);
+                        isMatchFound = true;
+                    }
+                }
+                System.out.println();
+                if(!isMatchFound){
+                    System.out.println("No match found for your name "+searchPetAge);
+                }
+                break;
+
+            case 5: menu();
+                break;
+            default:
+                System.out.println("Invalid input please try again.");
+                break;
+        }
     }
 
 

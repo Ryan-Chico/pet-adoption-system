@@ -31,7 +31,7 @@ public class Pet {
     }
     @Override
     public String toString(){
-        return id + " - " + name + " (" + type + "Breed" + breed +", Age: " + age + ")"
+        return id + " - " + name + " (" + "Type: "+ type + ", Breed: " + breed +", Age: " + age + ")"
                 + (adopted ? " [ADOPTED]" : "");
     }
 }
